@@ -7,6 +7,10 @@
     {
       "source": "/uploads/:path*",
       "destination": "https://mern-ecommerce-backend-2rvf.onrender.com/uploads/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

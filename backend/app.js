@@ -56,29 +56,10 @@ app.use(mongoSanitize());
 // );
 
 
-const allowedOrigins = [
-  process.env.CLIENT_URL?.trim(),
-  "http://localhost:5173",
-  "http://localhost:3000",
-].filter(Boolean);
-
-console.log("Allowed Origins:", allowedOrigins);
-
 app.use(
   cors({
-    origin(origin, callback) {
-      console.log("Incoming Origin:", JSON.stringify(origin));
-
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin.trim())) {
-        return callback(null, true);
-      }
-
-      console.log("Blocked Origin:", origin);
-      return callback(new Error("Not allowed by CORS"));
-    },
-    credentials: true,
+    origin: true,
+    credentials: true
   })
 );
 

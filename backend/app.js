@@ -35,25 +35,55 @@ app.use(
 app.use(mongoSanitize());
 
 // Dynamic CORS configuration
-const allowedOrigins = Array.from(
-  new Set([
-    process.env.CLIENT_URL,
-    'http://localhost:5173',
-    'http://localhost:3000'
-  ].filter(Boolean))
-);
+// const allowedOrigins = Array.from(
+//   new Set([
+//     process.env.CLIENT_URL,
+//     'http://localhost:5173',
+//     'http://localhost:3000'
+//   ].filter(Boolean))
+// );
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
+//       return callback(new Error('Not allowed by CORS'));
+//     },
+//     credentials: true
+//   })
+// );
+
+
+const allowedOrigins = [
+  process.env.CLIENT_URL?.trim(),
+  "http://localhost:5173",
+  "http://localhost:3000",
+].filter(Boolean);
+
+console.log("Allowed Origins:", allowedOrigins);
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+    origin(origin, callback) {
+      console.log("Incoming Origin:", JSON.stringify(origin));
+
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin.trim())) {
         return callback(null, true);
       }
-      return callback(new Error('Not allowed by CORS'));
+
+      console.log("Blocked Origin:", origin);
+      return callback(new Error("Not allowed by CORS"));
     },
-    credentials: true
+    credentials: true,
   })
 );
+
+
+
 
 app.use(compression());
 app.use(cookieParser());

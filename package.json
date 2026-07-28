@@ -1,0 +1,49 @@
+{
+  "name": "mern-ecommorce",
+  "version": "1.0.0",
+  "description": "eCommerce web application built with MERN Stack.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder.js",
+    "data:destroy": "node backend/seeder.js -d",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --forceExit",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "author": "Ajay Boro",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.10.0",
+    "colors": "^1.4.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "envalid": "^8.2.0",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.6.1",
+    "express-validator": "^7.0.1",
+    "helmet": "^8.3.0",
+    "jest": "^30.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.8",
+    "pino": "^10.3.1",
+    "pino-http": "^11.0.0",
+    "pino-pretty": "^13.1.3",
+    "razorpay": "^2.9.2",
+    "supertest": "^7.2.2",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4",
+    "dotenv": "^16.3.1"
+  }
+}

@@ -1,0 +1,1 @@
+import{j as r}from"./index-O9ZZ00bA.js";import{F as o}from"./FormContainer-CSwT0pl0.js";import{P as i}from"./ProfileForm-B816v2zv.js";import{M as e}from"./Meta-17my7ZO7.js";const a=()=>r.jsxs(o,{children:[r.jsx(e,{title:"Admin Profile"}),r.jsx("h2",{children:"Admin Profile"}),r.jsx(i,{})]});export{a as default};

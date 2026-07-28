@@ -1,0 +1,50 @@
+name: MERN E-Commerce CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-and-build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Root Dependencies
+        run: npm ci
+
+      - name: Install Frontend Dependencies
+        run: npm ci --prefix frontend
+
+      - name: Run Automated Test Suite
+        env:
+          NODE_ENV: test
+          PORT: 5000
+          JWT_SECRET: test_jwt_secret_key_123456
+          MONGO_URI: mongodb://127.0.0.1:27017/test_db
+          EMAIL_HOST: smtp.test.com
+          EMAIL_PORT: 587
+          EMAIL_USER: test@test.com
+          EMAIL_PASS: testpass
+          EMAIL_FROM: test@test.com
+          CLIENT_URL: http://localhost:3000
+          RAZORPAY_KEY_ID: rzp_test_dummy
+          RAZORPAY_KEY_SECRET: dummy_secret
+        run: npm test
+
+      - name: Build Frontend Application
+        run: npm run build --prefix frontend
+
+      - name: Build Backend Verification
+        run: node -c backend/server.js

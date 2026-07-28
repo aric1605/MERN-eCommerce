@@ -1,0 +1,1 @@
+import{j as s,$ as r,R as t,C as e}from"./index-O9ZZ00bA.js";const a=({children:n})=>s.jsx(r,{children:s.jsx(t,{className:"justify-content-md-center",children:s.jsx(e,{xs:12,md:8,lg:6,children:n})})});export{a as F};

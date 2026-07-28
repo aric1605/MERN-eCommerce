@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://mern-ecommerce-backend-2rvf.onrender.com/api/:path*"
+    },
+    {
+      "source": "/uploads/:path*",
+      "destination": "https://mern-ecommerce-backend-2rvf.onrender.com/uploads/:path*"
+    }
+  ]
+}
